@@ -85,8 +85,9 @@ function boxClick(e) {
       return;
     }
     if (!checkTie()) {
-      console.log("2.aiturn");
-      turn(aiSpot(), aiPlayer);
+      setTimeout(() => {
+        turn(aiSpot(), aiPlayer);
+      }, 300);
     }
   }
 }
@@ -144,15 +145,12 @@ function checkTie() {
       box.style.backgroundColor = "rgb(199, 199, 198)";
       box.removeEventListener("click", boxClick);
     });
-    console.log("checktie = true");
     return;
   }
-  console.log("checktie = false");
   return false;
 }
 
 function gameOver(gameWon) {
-  console.log("gameOver");
   const { wonCombo, player } = gameWon;
 
   wonCombo.forEach((combo) => {
