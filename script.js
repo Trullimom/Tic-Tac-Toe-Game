@@ -128,10 +128,12 @@ function leerBoxes() {
   return leerBoxes;
 }
 
-let leercells;
+let leerCells;
 function aiSpot() {
-  leercells = leerBoxes();
-  return leercells[0];
+  leerCells = leerBoxes();
+  let randomNum = Math.floor(Math.random() * leerCells.length);
+
+  return leerCells[randomNum];
 }
 
 function checkTie() {
