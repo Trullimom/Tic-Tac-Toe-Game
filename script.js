@@ -65,12 +65,13 @@ function startGame() {
     startBtn.classList.add("nowGaming");
     replayBtn.classList.remove("hidden");
     choosePlayerDiv.classList.add("hidden");
+    boxes.forEach((box) => {
+      box.innerHTML = "";
+      box.addEventListener("click", boxClick);
+    });
+  } else {
+    alert('Choose "X" or "O" and click "Game Start"');
   }
-
-  boxes.forEach((box) => {
-    box.innerHTML = "";
-    box.addEventListener("click", boxClick);
-  });
 }
 
 function boxClick(e) {
