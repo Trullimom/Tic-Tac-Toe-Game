@@ -1,0 +1,112 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Finger Paint";
+  background-color: rgb(31, 100, 118);
+  color: rgb(246, 213, 50);
+}
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-size: 70px;
+}
+
+#gameBoard {
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  font-size: 80px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*  border-right: 2px solid black;
+  border-bottom: 2px solid black; */
+}
+
+/* .box:nth-child(3n) {
+  border-right: none;
+}
+
+.box:nth-child(6) ~ .box {
+  border-bottom: none;
+}
+ */
+
+.border-bottom {
+  border-bottom: 2px solid rgb(222, 222, 222);
+}
+
+.border-right {
+  border-right: 2px solid rgb(222, 222, 222);
+}
+
+.playerBtn,
+.startBtn,
+.replayBtn {
+  padding: 10px 20px;
+  background-color: rgb(246, 213, 50);
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: rgb(59, 58, 58);
+  cursor: pointer;
+}
+.startBtn:active,
+.playerBtn:active,
+.replayBtn:active {
+  background-color: rgb(183, 152, 0);
+  color: whitesmoke;
+}
+
+.choosePlayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+span {
+  margin: 10px;
+  font-size: 20px;
+  padding: 10px;
+  color: rgb(28, 28, 28);
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+
+.nowGaming {
+  font-size: 20px;
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.winMessage {
+  color: white;
+  font-size: 50px;
+}
+
+
+h2{
+  color: rgb(104, 151, 233);
+}
+c
