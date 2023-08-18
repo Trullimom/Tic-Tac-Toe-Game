@@ -3,7 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Finger Paint";
-  background-color: rgb(31, 100, 118);
+  background-color: rgb(2, 94, 117);
   color: rgb(246, 213, 50);
 }
 
@@ -32,18 +32,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*  border-right: 2px solid black;
-  border-bottom: 2px solid black; */
 }
-
-/* .box:nth-child(3n) {
-  border-right: none;
-}
-
-.box:nth-child(6) ~ .box {
-  border-bottom: none;
-}
- */
 
 .border-bottom {
   border-bottom: 2px solid rgb(222, 222, 222);
@@ -91,6 +80,10 @@ span {
   }
 }
 
+.result {
+  font-size: 50px;
+}
+
 .nowGaming {
   font-size: 20px;
   border: none;
@@ -101,12 +94,6 @@ span {
 }
 
 .winMessage {
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 50px;
 }
-
-
-h2{
-  color: rgb(104, 151, 233);
-}
-c

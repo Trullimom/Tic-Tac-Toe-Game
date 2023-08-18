@@ -4,7 +4,7 @@ const choosePlayerDiv = document.querySelector(".choosePlayer");
 const result = document.querySelector(".result");
 const playerBtn = document.querySelectorAll(".playerBtn");
 const boxes = document.querySelectorAll(".box");
-const board = Array(9).fill(null);
+let board;
 const winCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -58,6 +58,7 @@ function replay() {
 }
 
 function startGame() {
+  board = Array(9).fill(null);
   if (huPlayer) {
     startBtn.innerHTML = "Now Gaming...";
     startBtn.classList.remove("startBtn");
@@ -73,45 +74,44 @@ function startGame() {
 }
 
 function boxClick(e) {
-  turn(e.target.id, huPlayer);
-  let gameWon = hasGameWon(board, huPlayer);
-  if (gameWon) {
-    gameOver(gameWon);
-    return;
-  }
-
-  turn(aiSpot(), aiPlayer);
-}
-
-function turn(boxId, player) {
-  if (board[boxId] === null) {
-    if (player === huPlayer) {
-      boxes[boxId].style.color = "red";
-      document.getElementById(boxId).innerHTML = player;
-      board[boxId] = player;
-      let gameWon = hasGameWon(board, player);
-      if (gameWon) {
-        gameOver(gameWon);
-      }
-    } else if (player === aiPlayer) {
-      boxes[boxId].style.color = "blue";
-      document.getElementById(boxId).innerHTML = player;
-      board[boxId] = player;
-      let gameWon = hasGameWon(board, player);
-      if (gameWon) {
-        gameOver(gameWon);
-      }
+  if (!board[e.target.id]) {
+    turn(e.target.id, huPlayer);
+    let gameWon = hasGameWon(board, huPlayer);
+    if (checkTie() !== false) {
+      return;
+    } else if (gameWon) {
+      gameOver(gameWon);
+      return;
+    }
+    if (!checkTie()) {
+      console.log("2.aiturn");
+      turn(aiSpot(), aiPlayer);
     }
   }
 }
 
-function hasGameWon(board, player) {
+function turn(boxId, player) {
+  if (player === huPlayer) {
+    boxes[boxId].style.color = "darkred";
+    document.getElementById(boxId).innerHTML = player;
+    board[boxId] = player;
+  } else if (player === aiPlayer) {
+    boxes[boxId].style.color = "darkblue";
+    document.getElementById(boxId).innerHTML = player;
+    board[boxId] = player;
+    let gameWon = hasGameWon(board, player);
+    if (gameWon) {
+      gameOver(gameWon);
+    }
+  }
+}
+
+function hasGameWon(board) {
   let gameWon = false;
   for (const combo of winCombos) {
     const [a, b, c] = combo;
-    console.log(board[a], board[b], board[c]);
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      gameWon = { wonCombo: [a, b, c], player: player };
+      gameWon = { wonCombo: [a, b, c], player: board[a] };
     }
   }
   return gameWon;
@@ -133,13 +133,19 @@ function aiSpot() {
   return leercells[0];
 }
 
-//tiegame
 function checkTie() {
   if (leerBoxes().length === 0) {
+    result.classList.add("winMessage");
     result.innerHTML = "Tie Game!";
-    boxes.forEach((box) => box.removeEventListener("click", boxClick));
+    boxes.forEach((box) => {
+      box.style.backgroundColor = "rgb(199, 199, 198)";
+      box.removeEventListener("click", boxClick);
+    });
+    console.log("checktie = true");
     return;
   }
+  console.log("checktie = false");
+  return false;
 }
 
 function gameOver(gameWon) {
@@ -148,7 +154,7 @@ function gameOver(gameWon) {
 
   wonCombo.forEach((combo) => {
     document.getElementById(combo).style.backgroundColor =
-      player === huPlayer ? "white" : "rgb(4, 64, 79);";
+      player === huPlayer ? "rgb(23, 163, 198)" : "rgb(3, 60, 74)";
   });
   result.classList.add("winMessage");
   result.innerHTML = player === huPlayer ? "You won!" : "You lost...";
